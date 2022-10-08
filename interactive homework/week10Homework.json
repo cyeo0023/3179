@@ -1,0 +1,147 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 600,
+    "height": 450,
+    "title":"Coronavirus Tests Conducted By Country",
+    "data":{
+        "url": "https://raw.githubusercontent.com/cyeo0023/3179/main/interactive%20homework/CovidTestCountryAtJune.csv"
+    },
+    "params":[
+        {
+        "name":"Units_selection",
+        "bind":{
+            "input": "select",
+            "options":[
+                null,
+                "samples",
+                "cases"
+            ],
+            "labels":[
+                "Show All",
+                "samples",
+                "cases"
+            ],
+            "name": "Units Selection: "
+            }
+               
+        },
+        {
+        "name":"Tested_Above",
+        "value":0,
+        "bind":{
+            "input": "range",
+            "min": 0,
+            "max": 10000000,
+            "step": 1000,
+            "name": "Minimum Tested Population: "
+        }   
+    }
+    
+    ],
+    "transform": [
+        {"filter": "datum.Tested > 0"},
+        {"filter":"datum.Positive > 0"},
+        { "filter": "Units_selection == null || datum.Units == Units_selection"},
+        {"filter":"datum.Tested > Tested_Above"}
+    ],
+    "encoding": {
+        "x":{
+            "field":"Tested",
+            "type": "quantitative",
+            "title": "Number of people tested for covid",
+            "axis":{"tickCount":7},
+            "scale":{"type": "log", "domain":[1,100000000]}
+        },
+        "y":{
+            "field":"Positive",
+            "type": "quantitative",
+            "axis":{"tickCount":6},
+            "scale":{"type": "log", "domain":[1,100000000]}
+        }
+    },
+    "layer":[
+        {
+            "mark":"circle",
+            "encoding": {
+                "size":{
+                    "field":"Positive",
+                    "type": "quantitative",
+                    "scale":{
+                        "type": "threshold",
+                        "domain":[1000, 10000, 50000, 100000, 500000],
+                        "range": [10, 50, 150, 200, 300, 400]
+                    },
+                    "legend":{"format":".1s"}
+                },
+                "color":{
+                    "field": "Units",
+                    "type": "nominal",
+                    "scale":{
+                        "domain":[
+                            "samples",
+                            "cases"
+                        ],
+                        "range":[
+                            "#e41a1c",
+                            "#ff7f00"
+                        ]
+                    }
+                },
+                "opacity":{"value":0.2},
+                "tooltip":[
+                    {"field": "Country", "type": "nominal"},
+                    {"field": "Tested", "type": "quantitative","format":","},
+                    {"field": "Positive", "type": "quantitative","format":","},
+                    {"field": "Units", "type": "nominal","format":","},
+                    {"field": "Positive/Tested %", "type": "quantitative","format":","},
+                    {"field": "Source_1", "type": "nominal","format":","}
+                    
+                ]
+            }
+        },
+        {
+            "mark":{
+                "type": "text",
+                "align":"right",
+                "baseline":"middle",
+                "dx":-12,
+                "fontSize":11.5,
+                "fontStyle":"italic"
+            },
+            "encoding": {
+                "text":{"field":"Country","type": "nominal"},
+                "color":{"value":"black"},
+                "opacity":{
+                    "condition":{
+                        "test": "datum['Country'] == 'India'",
+                        "value": 1
+                    },
+                    "value": 0
+                },
+                "tooltip":[
+                    {"field": "Country", "type": "nominal"},
+                    {"field": "Tested", "type": "quantitative","format":","},
+                    {"field": "Positive", "type": "quantitative","format":","},
+                    {"field": "Units", "type": "nominal","format":","},
+                    {"field": "Positive/Tested %", "type": "quantitative","format":","},
+                    {"field": "Source_1", "type": "nominal","format":","}
+                ]
+            }
+        }
+                
+            
+
+
+            
+        
+    ]
+
+
+        
+
+        
+   
+    
+        
+    
+}
