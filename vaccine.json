@@ -1,0 +1,86 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Vaccinations given to people to take precautions against Coronavirus by Countries",
+  "data": {
+    "url": "https://raw.githubusercontent.com/cyeo0023/3179/main/Assignment%202/vaccination-data(31-08-2021).csv"
+  },
+  "vconcat": [
+    {
+      "encoding": {
+        "color": {
+          "condition": {
+            "param": "brush",
+            "title": "Vaccines",
+            "field": "WHO_REGION",
+            "type": "nominal",
+            "scale": {
+              "domain": ["EMRO", "EURO", "AFRO", "WPRO", "AMRO","SEARO"],
+              "range": ["#e7ba52", "#a7a7a7", "#aec7e8", "#1f77b4", "#9467bd"]
+            }
+          },
+          "value": "lightgray"
+        },
+        "size": {
+          "title": "Person Fully Vaccinated",
+          "type": "quantitative",
+          "field": "PERSONS_FULLY_VACCINATED",
+          "scale":{
+            "type": "threshold",
+            "domain":[0,10000,100000, 1000000, 1000000,10000000,100000000,1000000000],
+            "range": [10, 50, 150, 200, 300, 400]
+        },
+        "legend":{"format":".1s"}
+          
+        },
+        "x": {
+          "field": "PERSONS_FULLY_VACCINATED",
+          "title": "Persons fully vaccinated",
+          "type": "quantitative",
+          "axis":{"tickCount":7},
+          "scale":{"type": "log", "domain":[1,100000000]}
+        },
+        "y": {
+          "title": "Total Vaccinations",
+          "field": "TOTAL_VACCINATIONS",
+          "type": "quantitative",
+          "axis":{"tickCount":7},
+          "scale":{"type": "log", "domain":[1,100000000]}
+          
+        }
+      },
+      "width": 600,
+      "height": 300,
+      "mark": "point",
+      "params": [{
+        "name": "brush",
+        "select": {"type": "interval", "encodings": ["x"]}
+      }],
+      "transform": [{"filter": {"param": "click"}}]
+    },
+    {
+      "encoding": {
+        "color": {
+          "condition": {
+            "param": "click",
+            "field": "WHO_REGION",
+            "scale": {
+              "domain": ["EMRO", "EURO", "AFRO", "WPRO", "AMRO","SEARO"],
+              "range": ["#e7ba52", "#a7a7a7", "#aec7e8", "#1f77b4", "#9467bd"]
+            }
+          },
+          "value": "lightgray"
+        },
+        "x": {"aggregate": "count"},
+        "y": {"title": "Region", "field": "WHO_REGION"}
+      },
+      "width": 600,
+      "mark": "bar",
+      "params": [{
+        "name": "click",
+        "select": {"type": "point", "encodings": ["color"]}
+      }],
+      "transform": [{"filter": {"param": "brush"}}]
+    }
+  ]
+}
+
