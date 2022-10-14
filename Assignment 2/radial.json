@@ -1,0 +1,20 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": "Standard symptoms of Coronavirus shown in China",
+    "data": {
+        "url": "https://raw.githubusercontent.com/cyeo0023/3179/main/Assignment%202/Covid_symptoms.csv"
+    },
+    "layer": [{
+      "mark": {"type": "arc", "innerRadius": 20, "stroke": "#fff"}
+    },{
+      "mark": {"type": "text", "radiusOffset": 15},
+      "encoding": {
+        "text": {"field": "Value", "type": "quantitative"}
+      }
+    }],
+    "encoding": {
+      "theta": {"field": "Value", "type": "quantitative", "stack": true},
+      "radius": {"field": "Value", "scale": {"type": "sqrt", "zero": true, "rangeMin": 20}},
+      "color": {"field": "Symptoms", "type": "nominal"}
+    }
+  }
