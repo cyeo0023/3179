@@ -1,6 +1,6 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "width": 750,
+    "width": 600,
     "height": 600,
     "title":"Total confirmed cases of Coronovirus around the world in 2020",
     "projection":{"type":"orthographic",
