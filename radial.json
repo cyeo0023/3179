@@ -1,5 +1,7 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 750,
+    "height": 600,
     "title": "Standard symptoms of Coronavirus shown in China",
     "data": {
         "url": "https://raw.githubusercontent.com/cyeo0023/3179/main/Assignment%202/Covid_symptoms.csv"
@@ -15,6 +17,12 @@
     "encoding": {
       "theta": {"field": "Value", "type": "quantitative", "stack": true},
       "radius": {"field": "Value", "scale": {"type": "sqrt", "zero": true, "rangeMin": 20}},
-      "color": {"field": "Symptoms", "type": "nominal"}
+      "color": {"field": "Symptoms", "type": "nominal"},
+      "tooltip":[
+        {"field": "Symptoms", "type": "nominal"},
+        {"field": "Value", "type": "quantitative","format":","}
+    ]
     }
+    
+    
   }
