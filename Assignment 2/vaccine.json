@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "Vaccinations given to people to take precautions against Coronavirus by Countries",
+  "title": "Vaccinations given to people to take precautions against Coronavirus by countries",
   "data": {
     "url": "https://raw.githubusercontent.com/cyeo0023/3179/main/Assignment%202/vaccination-data(31-08-2021).csv"
   },
@@ -10,18 +10,18 @@
         "color": {
           "condition": {
             "param": "brush",
-            "title": "Vaccines",
+            "title": "WHO Region",
             "field": "WHO_REGION",
             "type": "nominal",
             "scale": {
               "domain": ["EMRO", "EURO", "AFRO", "WPRO", "AMRO","SEARO"],
-              "range": ["#e7ba52", "#a7a7a7", "#aec7e8", "#1f77b4", "#9467bd"]
+              "range": ["#e7ba52", "#a7a7a7", "#aec7e8", "#1f77b4", "#9467bd","#FB8181"]
             }
           },
           "value": "lightgray"
         },
         "size": {
-          "title": "Person Fully Vaccinated",
+          "title": "Fully Vaccinated",
           "type": "quantitative",
           "field": "PERSONS_FULLY_VACCINATED",
           "scale":{
@@ -37,19 +37,24 @@
           "title": "Persons fully vaccinated",
           "type": "quantitative",
           "axis":{"tickCount":7},
-          "scale":{"type": "log", "domain":[1,100000000]}
+          "scale":{"type": "log", "domain":[1,100000000000]}
         },
         "y": {
           "title": "Total Vaccinations",
           "field": "TOTAL_VACCINATIONS",
           "type": "quantitative",
           "axis":{"tickCount":7},
-          "scale":{"type": "log", "domain":[1,100000000]}
+          "scale":{"type": "log", "domain":[1,100000000000]}
           
-        }
+        },
+        "tooltip":[
+          {"field": "COUNTRY", "type": "nominal"},
+          {"field": "TOTAL_VACCINATIONS", "type": "quantitative","format":","},
+          {"field": "PERSONS_FULLY_VACCINATED", "type": "quantitative","format":","}
+      ]
       },
-      "width": 600,
-      "height": 300,
+      "width": 700,
+      "height": 600,
       "mark": "point",
       "params": [{
         "name": "brush",
@@ -65,11 +70,15 @@
             "field": "WHO_REGION",
             "scale": {
               "domain": ["EMRO", "EURO", "AFRO", "WPRO", "AMRO","SEARO"],
-              "range": ["#e7ba52", "#a7a7a7", "#aec7e8", "#1f77b4", "#9467bd"]
+              "range": ["#e7ba52", "#a7a7a7", "#aec7e8", "#1f77b4", "#9467bd","#FB8181"]
             }
           },
           "value": "lightgray"
         },
+        "tooltip":[
+          {"field": "WHO_REGION", "type": "nominal"},
+          {"field": "TOTAL_VACCINATIONS", "type": "quantitative","format":","}
+      ],
         "x": {"aggregate": "count"},
         "y": {"title": "Region", "field": "WHO_REGION"}
       },
@@ -83,4 +92,5 @@
     }
   ]
 }
+
 
