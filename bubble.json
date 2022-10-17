@@ -1,8 +1,8 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "width": 600,
-    "height": 450,
-    "title":"Coronavirus Tests Conducted By Country At May 2020",
+    "width": 750,
+    "height": 600,
+    "title":"Coronavirus Tests Conducted By countries At May 2020",
     "data":{
         "url": "https://raw.githubusercontent.com/cyeo0023/3179/main/Assignment%202/CovidTestCountryAtJune.csv"
     },
@@ -52,14 +52,16 @@
     ],
     "encoding": {
         "x":{
-            "field":"Date",
-            "timeUnit": "utcmonthdate",
-            "title": "Date",
-            "axis": {"format": "%b"}
+            "field":"Tested",
+            "type": "quantitative",
+            "title": "Number of people tested for covid",
+            "axis":{"tickCount":7},
+            "scale":{"type": "log", "domain":[1,100000000]}
         },
         "y":{
             "field":"Positive",
             "type": "quantitative",
+            "title": "Positive after tested for covid",
             "axis":{"tickCount":6},
             "scale":{"type": "log", "domain":[1,100000000]}
         }
@@ -88,8 +90,8 @@
                             "cases"
                         ],
                         "range":[
-                            "#6b5b95",
-                            "#d64161"
+                            "#F40923",
+                            "#0038B1"
                         ]
                     }
                 },
