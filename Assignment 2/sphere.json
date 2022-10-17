@@ -1,8 +1,8 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "width": 800,
-    "height": 450,
-    "title":"Total confirmed cases of Coronovirus on the world in 2020",
+    "width": 750,
+    "height": 600,
+    "title":"Total confirmed cases of Coronovirus around the world in 2020",
     "projection":{"type":"orthographic",
                 "rotate": {"expr": "[rotateLeftRight, rotateUpDown]"}
             },
@@ -42,7 +42,7 @@
         "color":{
             "field":"Confirmed Cases",
             "type": "quantitative",
-            "scale":{"type": "log"}
+            "scale":{"type": "log","range":["#F2E3D9","#EFCAB2","#FA9351","#F66000"]}
 
         },
         "tooltip":[
@@ -50,8 +50,7 @@
             {"field":"confirmed","type": "quantitative"}
         ]
     }
-
-        
+    
     
 }
     
