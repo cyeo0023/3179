@@ -1,7 +1,7 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "width": 600,
-    "height": 600,
+    "height": 700,
     "title": "Standard symptoms of Coronavirus shown in China",
     "data": {
         "url": "https://raw.githubusercontent.com/cyeo0023/3179/main/Assignment%202/Covid_symptoms.csv"
