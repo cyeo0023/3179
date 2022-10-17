@@ -1,6 +1,6 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "width": 750,
+    "width": 600,
     "height": 600,
     "title":"Coronavirus Tests Conducted By countries At May 2020",
     "data":{
